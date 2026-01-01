@@ -9,3 +9,6 @@ karabiner/automatic_backups/
 
 # App history
 wireshark/recent*
+
+# Credentials
+gh/hosts.yml
