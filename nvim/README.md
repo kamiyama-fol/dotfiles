@@ -1,5 +1,31 @@
 # neovim_config
 
+## キーバインド
+### general
+| モード | キー | 操作 |
+| --- | --- | --- |
+| - | スペース | Leaderキー |
+| insert | jk | escと同じ（ノーマルモードに戻る） |
+| normal | <esc><esc> | 検索ハイライトを消す |
+
+### snack.nvim
+| キーバインド      | 操作内容                         | 説明                             |
+|-------------------|----------------------------------|----------------------------------|
+| `<leader>z`      | `Snacks.zen.zoom()`             | トグルズームの切り替え          |
+| `<leader>gB`     | `Snacks.gitbrowse()`            | GitHubでのGitブラウズ           |
+| `<leader>gg`     | `Snacks.lazygit()`              | LazyGitの起動                   |
+| `<leader>n`      | `Snacks.notifier.show_history()`| 通知履歴の表示                  |
+| `[[`             | `Snacks.words.jump(-1)`         | 前の参照箇所への移動            |
+| `]]`             | `Snacks.words.jump(1)`          | 次の参照箇所への移動            |
+| `<leader>sf`     | `Snacks.picker.files()`         | ファイル検索                    |
+| `<leader>sg`     | `Snacks.picker.grep()`          | Grep検索                        |
+
+### lazygit
+| キーバインド      | 操作内容                         | 説明                        |
+| --- | --- | ---|
+| `<leader>` | `<cmd>LazyGit<cr>` | LazyGitを起動する |
+
+
 ## ディレクトリ構成
 ```bash:bash
  ~/.config/nvim
@@ -24,7 +50,7 @@
 ```
 
 ## 使用プラグイン
-- [パッケージ管理](https://github.com/folke/lazy.nvim)
+- [パッケージ管理]https://github.com/folke/lazy.nvim)
 - [ファイラ](https://github.com/stevearc/oil.nvim)
 - [ファインダ](https://github.com/folke/snacks.nvim)
 - [Language Server](https://github.com/neovim/nvim-lspconfig)
