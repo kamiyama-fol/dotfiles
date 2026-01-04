@@ -1,62 +1,57 @@
 # neovim_config
 
-## キーバインド
+## 設定したキーバインド
 ### general
 | モード | キー | 操作 |
 | --- | --- | --- |
 | - | スペース | Leaderキー |
 | insert | jk | escと同じ（ノーマルモードに戻る） |
 | normal | <esc><esc> | 検索ハイライトを消す |
+| normal | <cmd>Q | 終了する|
+
 
 ### snack.nvim
-| キーバインド      | 操作内容                         | 説明                             |
-|-------------------|----------------------------------|----------------------------------|
-| `<leader>z`      | `Snacks.zen.zoom()`             | トグルズームの切り替え          |
-| `<leader>gB`     | `Snacks.gitbrowse()`            | GitHubでのGitブラウズ           |
-| `<leader>gg`     | `Snacks.lazygit()`              | LazyGitの起動                   |
-| `<leader>n`      | `Snacks.notifier.show_history()`| 通知履歴の表示                  |
-| `[[`             | `Snacks.words.jump(-1)`         | 前の参照箇所への移動            |
-| `]]`             | `Snacks.words.jump(1)`          | 次の参照箇所への移動            |
-| `<leader>sf`     | `Snacks.picker.files()`         | ファイル検索                    |
-| `<leader>sg`     | `Snacks.picker.grep()`          | Grep検索                        |
+| キーバインド | 操作内容 | 説明 |
+|---|---|---|
+| `<leader>z`      | `Snacks.zen.zoom()`             | トグルズームの切り替え |
+| `<leader>gB`     | `Snacks.gitbrowse()`            | GitHubでのGitブラウズ |
+| `<leader>gg`     | `Snacks.lazygit()`              | LazyGitの起動 |
+| `<leader>n`      | `Snacks.notifier.show_history()`| 通知履歴の表示 |
+| `[[`             | `Snacks.words.jump(-1)`         | 前の参照箇所への移動 |
+| `]]`             | `Snacks.words.jump(1)`          | 次の参照箇所への移動 |
+| `<leader>sf`     | `Snacks.picker.files()`         | ファイル検索 |
+| `<leader>sg`     | `Snacks.picker.grep()`          | Grep検索 |
 
-### lazygit
-| キーバインド      | 操作内容                         | 説明                        |
-| --- | --- | ---|
+### gx.nvim
+| キーバインド | 操作内容 | 説明 |
+|---|---|---|
+| `gx` | `:Browse` | google検索 |
+
+### lazygit.nvim
+| キーバインド | 操作内容 | 説明 |
+| --- | --- | --- |
 | `<leader>` | `<cmd>LazyGit<cr>` | LazyGitを起動する |
 
+### nvim-possession
+| キーバインド | 操作内容 | 説明 |
+| --- | --- | --- |
+| `<leader>sl` |	セッション一覧表示 |	保存されているセッションをリスト表示し、選択して読み込みます。 |
+| `<leader>sn` |	新規セッション作成 |	現在のバッファやレイアウトの状態に名前を付けて新しく保存します。 |
+| `<leader>su` |	セッション更新 |	現在開いているセッションの状態を最新の状態に上書き保存します。 |
+| `<leader>sd` |	セッション削除 |	不要になったセッションを選択して削除します。 |
 
-## ディレクトリ構成
-```bash:bash
- ~/.config/nvim
-❯ tree
-.
-├── init.lua # nvimを起動した時に実行されるscript
-├── lazy-lock.json
-├── lua 
-│   ├── config
-│   │   └── lazy.lua #プラグイン管理するためにプラグイン
-│   └── plugins # lazy.nvim
-│       ├── completion.lua # 自動補完（hrsh7th/nvim-cmp）
-│       ├── filer.lua # ファイラ（stevearc/oil.nvim）
-│       ├── finder.lua #検索ツール (folke/snacks.nvim)
-│       ├── git.lua #git IDE (kdheepak/lazygit.nvim)
-│       ├── language-server.lua # LSP (neovim/nvim-lspconfig)
-│       ├── nvim-treesitter.lua # インデントの自動解析ツール (nvim-treesitter/nvim-treesitter),
-│       └── vim-rails.lua # rails開発に便利なツール ("tpope/vim-rails")
-└── README.md
+### openingh.nvim
+| キー操作 | モード | 機能 | 内容 |
+| :--- | :---: | :--- | :--- |
+| `<Leader>gr` | n | **Open Repo** | GitHubのリポジトリページをブラウザで開く |
+| `<Leader>gf` | n | **Open File** | 現在のファイルをGitHubで開く |
+| `<Leader>gf` | v | **Open Lines** | 選択した行をGitHubでハイライトして開く |
 
-4 directories, 12 files
-```
+### other.nvim
+| キー操作 | モード | 機能 | 内容 |
+| :--- | :---: | :--- | :--- |
+| `<leader>oo` | n | **Open Other** | 関連ファイル（例：実装⇔テスト）に切り替える |
+| `<leader>ot` | n | **Open Other Tab** | 関連ファイルを新しいタブで開く |
 
-## 使用プラグイン
-- [パッケージ管理]https://github.com/folke/lazy.nvim)
-- [ファイラ](https://github.com/stevearc/oil.nvim)
-- [ファインダ](https://github.com/folke/snacks.nvim)
-- [Language Server](https://github.com/neovim/nvim-lspconfig)
-- [LS管理ツール](https://github.com/mason-org/mason.nvim)
-- [LS管理ツール2](https://github.com/mason-org/mason-lspconfig.nvim)
-- [自動補完エンジン](https://github.com/hrsh7th/nvim-cmp/)
-- [Git IDE](https://github.com/kdheepak/lazygit.nvim)
 
-最新の変更は[plugins](https://github.com/kamiyama-fol/neovim_config/tree/main/lua/plugins)を参考に
+
