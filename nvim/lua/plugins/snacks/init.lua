@@ -8,7 +8,7 @@ return {
     -- or leave it empty to use the default settings
     -- refer to the configuration section below
     bigfile = { enabled = true },
-    dashboard = { enabled = true },
+    dashboard = require("plugins.snacks.dashboard"),
     explorer = { enabled = true },
     indent = { enabled = true },
     input = { enabled = true },
@@ -21,9 +21,6 @@ return {
     words = { enabled = true },
     image = {
       enabled = true, -- ここをtrueにすることで画像表示が有効になります
-    },
-    picker = {
-      enabled = true,
     },
   },
   keys = {

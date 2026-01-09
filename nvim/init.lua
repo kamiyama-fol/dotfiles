@@ -11,6 +11,18 @@ vim.opt.clipboard = "unnamedplus"
 vim.keymap.set("i", "jk", "<Esc>")
 vim.keymap.set("n", "<Esc><Esc>", ":nohlsearch<CR>", { silent = true })
 
+-- 背景を透明にするための設定
+local groups = { "Normal", "NonText", "NormalNC", "NormalSB" }
+
+for _, group in ipairs(groups) do
+    -- nvim_set_hl(名前空間, グループ名, 設定値のテーブル)
+    -- 0 はグローバルな名前空間を指します
+    vim.api.nvim_set_hl(0, group, {
+        bg = "none",    -- GUI用の背景色をなしに設定
+        ctermbg = "none" -- ターミナル用の背景色をなしに設定
+    })
+end
+
 -- ==========================================
 -- インデントの基本設定
 -- ==========================================
