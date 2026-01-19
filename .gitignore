@@ -1,14 +1,14 @@
 .DS_Store
 
 # System & Binary directories
-herd-lite/
+.config/herd-lite/
 
 # Cache & State
-configstore/
-karabiner/automatic_backups/
+.config/configstore/
+.config/karabiner/automatic_backups/
 
 # App history
-wireshark/recent*
+.config/wireshark/recent*
 
 # Credentials
-gh/hosts.yml
+.config/gh/hosts.yml
