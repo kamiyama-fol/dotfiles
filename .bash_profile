@@ -98,3 +98,4 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 
 ### nvim ###
 export PATH="$HOME/.nvim/bin:$PATH"
+. "$HOME/.cargo/env"

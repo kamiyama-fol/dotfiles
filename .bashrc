@@ -36,3 +36,4 @@ fi
 
 ### translate ###
 alias japanese="trans -b en:ja"
+. "$HOME/.cargo/env"
