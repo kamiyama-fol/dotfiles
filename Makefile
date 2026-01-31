@@ -42,6 +42,8 @@ install:
 	@for soft in $(MUST_INSTALL_MANYALLY); do \
 		@echo "You need to install $${item} manually."\
 	done
+	# sync default commit massage
+	git config [--global] commit.template $(DOTFILES_DIR)/gitmessage.txt
 
 unlink:
 	@echo "リンクを解除します..."
