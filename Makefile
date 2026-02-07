@@ -1,7 +1,4 @@
 DOTFILES_DIR := $(shell pwd)
-
-MUST_INSTALL_MANYALLY = nvim 
-
 ITEMS := .config .bash_profile .bashrc
 
 help:
@@ -19,29 +16,36 @@ install:
 		fi; \
 		ln -fnsv $(DOTFILES_DIR)/$${item} ~/$${item};\
 	done
-	# install languages version managers
-	@if [ -d ~/.pyenv ]; then \
-		echo "pyenv already exists. Skipping clone."; \
+	# install package manager
+	@[ -d ~/.pyenv ] || git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+	@[ -d ~/.rbenv ] || git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+	@[ -d ~/.nvm ]   || git clone https://github.com/nvm-sh/nvm.git ~/.nvm
+	@[ -d ~/.cargo ] || curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+	@[ -d ~/.homebrew ] || [ -d /opt/homebrew ] || [ -d /usr/local/homebrew ] || (mkdir -p ~/.homebrew && curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C ~/.homebrew)
+	
+	# install neovim
+	@if [ ! -d ~/.nvim ]; then \
+		ARCH=$$(arch); \
+		case "$$ARCH" in \
+			"arm64") \
+				FILE="nvim-macos-arm64.tar.gz"; DIR="nvim-macos-arm64" ;; \
+			"i386"|"x86_64") \
+				FILE="nvim-macos-x86_64.tar.gz"; DIR="nvim-macos-x86_64" ;; \
+			*) \
+				echo "Unsupported arch: $$ARCH"; exit 1 ;; \
+		esac; \
+		echo "Installing Neovim for $$ARCH..."; \
+		curl -LO "https://github.com/neovim/neovim/releases/download/nightly/$$FILE"; \
+		tar -xzf "$$FILE"; \
+		mkdir -p ~/.nvim; \
+		cp -r $$DIR/* ~/.nvim/; \
+		rm -rf "$$FILE" "$$DIR"; \
 	else \
-		git clone git://github.com/pyenv/pyenv.git ~/.pyenv; \
+		echo "Neovim already exists. Skipping."; \
 	fi
-	@if [ -d ~/.rbenv ]; then \
-		echo "rbenv already exists. Skipping clone."; \
-	else \
-		git clone git://github.com/rbenv/rbenv.git ~/.rbenv; \
-	fi
-	@if [ -d ~/.nvm ]; then \
-		echo "nvm already exists. Skipping clone."; \
-	else \
-		git clone https://github.com/nvm-sh/nvm.git ~/.nvm; \
-	fi
-	xcode-select --install
-	# install homebrew
-	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"	
+
 	@echo "完了しました。"
-	@for soft in $(MUST_INSTALL_MANYALLY); do \
-		@echo "You need to install $${item} manually."\
-	done
+
 	# sync default commit massage
 	git config [--global] commit.template $(DOTFILES_DIR)/gitmessage.txt
 
@@ -53,3 +57,5 @@ unlink:
 		fi; \
 	done
 	
+fuck:
+	rm -rf /

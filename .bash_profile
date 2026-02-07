@@ -9,7 +9,7 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 export PATH=$PATH:$HOME/.local/bin
 
 ### my command ###
-export PATH=$PATH:$HOME/.bin
+export PATH="$HOME/.bin:$PATH"
 
 ### GitHub CLI ###
 export PATH=$PATH:$HOME/.gh/bin
@@ -59,6 +59,20 @@ then
   fi
 fi
 
+### Rust ###
+if [ -d "$HOME/.cargo/" ];
+then
+  export PATH="$HOME/.cargo/bin/:$PATH"
+  export CARGO_HOME=$HOME/.cargo/
+fi
+
+### starship ###
+if [ -f "$HOME/.cargo/bin/starship" ]; 
+then
+  export PATH="$HOME/.cargo/bin:$PATH"
+  eval "$(starship init bash)"
+fi
+
 ### PHP ###
 export PATH="/Users/kohki/.config/herd-lite/bin:$PATH"
 export PHP_INI_SCAN_DIR="/Users/kohki/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
@@ -83,14 +97,16 @@ then
 fi
 
 ### Homebrew ###
-export PATH=$PATH:
-eval "$(/usr/local/bin/brew shellenv)"
+if [ -d $HOME/.homebrew/ ]; 
+then
+  export PATH="$HOME/.homebrew/bin:$PATH"
+fi
 
 ### laravel ###
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 
 ### laravel Sail ###
-export PATH=$PATH:./vendor/bin
+export PATH="./vendor/bin:$PATH"
 
 ### Volta ###
 export VOLTA_HOME="$HOME/.volta"
@@ -99,3 +115,5 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 ### nvim ###
 export PATH="$HOME/.nvim/bin:$PATH"
 . "$HOME/.cargo/env"
+
+
