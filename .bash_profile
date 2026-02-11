@@ -96,7 +96,10 @@ if [ -d "/opt/subversion" ]
 then
   export SVN_HOME="/opt/subversion"
   echo $PATH | grep --quiet "$SVN_HOME/bin"
-  if [ ! $? == 0 ] ; then PATH=$SVN_HOME/bin:$PATH ; fi
+  if [ ! $? == 0 ]
+  then
+    export PATH="$SVN_HOME/bin:$PATH"
+  fi
 fi
 
 ### Homebrew ###
