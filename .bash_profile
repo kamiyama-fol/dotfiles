@@ -59,6 +59,9 @@ then
   fi
 fi
 
+### go ###
+export PATH="$HOME/.go/bin/:$PATH"
+
 ### Rust ###
 if [ -d "$HOME/.cargo/" ];
 then
