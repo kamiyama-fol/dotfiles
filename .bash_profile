@@ -119,4 +119,5 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 export PATH="$HOME/.nvim/bin:$PATH"
 . "$HOME/.cargo/env"
 
-
+# postgres
+export PATH="$HOME/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
