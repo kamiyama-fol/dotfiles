@@ -103,9 +103,12 @@ then
 fi
 
 ### Homebrew ###
-if [ -d $HOME/.homebrew/ ]; 
-then
-  export PATH="$HOME/.homebrew/bin:$PATH"
+if [ -d "$HOME/.homebrew/bin" ]; then
+    eval "$($HOME/.homebrew/bin/brew shellenv)"
+elif [ -f "/opt/homebrew/bin/brew" ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -f "/usr/local/bin/brew" ]; then
+    eval "$(/usr/local/bin/brew shellenv)"
 fi
 
 ### laravel ###
