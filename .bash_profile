@@ -8,6 +8,9 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 ### Local App ###
 export PATH=$PATH:$HOME/.local/bin
 
+### aws ###
+export PATH=$PATH:$HOME/.aws-cli/
+
 ### my command ###
 export PATH="$HOME/.bin:$PATH"
 

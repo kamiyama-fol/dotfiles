@@ -23,6 +23,10 @@ for _, group in ipairs(groups) do
     })
 end
 
+vim.keymap.set('n', '<Leader>cf', '<Cmd>let @+ = expand("%")<CR>', { desc = "相対パスをコピー" })
+vim.keymap.set('n', '<Leader>cF', '<Cmd>let @+ = expand("%:p")<CR>', { desc = "フルパスをコピー" })
+
+
 -- ==========================================
 -- インデントの基本設定
 -- ==========================================
