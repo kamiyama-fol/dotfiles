@@ -44,6 +44,25 @@ install:
 		echo "Neovim already exists. Skipping."; \
 	fi
 
+	# install go
+	@if ! command -v go &> /dev/null; then \
+		ARCH=$$(arch); \
+		if [ "$$ARCH" = "arm64" ]; then \
+			echo "Installing Go for $$ARCH..."; \
+			GO_TARBALL="go1.25.7.darwin-arm64.tar.gz"; \
+			GO_URL="https://go.dev/dl/$$GO_TARBALL"; \
+			curl -LO "$$GO_URL"; \
+			mkdir -p ~/.go; \
+			tar -C ~/.go -xzf "$$GO_TARBALL"; \
+			rm "$$GO_TARBALL"; \
+			echo "Please add 'export PATH=\"\$PATH:~/.go/go/bin\"' to your shell profile (e.g., .bash_profile or .bashrc) to complete the Go installation."; \
+		else \
+			echo "Go installation skipped: Only arm64 architecture is supported for automated installation via this Makefile."; \
+		fi; \
+	else \
+		echo "Go is already installed. Skipping."; \
+	fi
+
 	@echo "完了しました。"
 
 	# sync default commit massage

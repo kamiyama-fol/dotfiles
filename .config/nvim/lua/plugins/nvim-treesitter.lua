@@ -14,6 +14,7 @@ return {
       "javascript",
       "typescript",
       "python",
+      "go",
     },
     highlight = { enable = true },
     indent = { enable = true },
