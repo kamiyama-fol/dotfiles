@@ -3,6 +3,8 @@
 # System & Binary directories
 .config/herd-lite/
 
+.config/nvim/lazy-lock.json
+
 # Cache & State
 .config/configstore/
 .config/karabiner/automatic_backups/
