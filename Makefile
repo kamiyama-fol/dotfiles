@@ -75,6 +75,3 @@ unlink:
 			rm -v "${HOME}/$${item}"; \
 		fi; \
 	done
-	
-fuck:
-	rm -rf /
