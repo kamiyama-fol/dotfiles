@@ -24,6 +24,8 @@ end)
 -- キー操作の設定 (Key Assignments)
 -- ==========================================
 config.keys = {
+  -- フルスクリーン表示
+  { key = "f", mods = "CTRL|SHIFT", action = act.ToggleFullScreen },
   -- リーダーキー経由の分割 
   { key = "'", mods = "CTRL|SHIFT", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
   { key = "%", mods = "CTRL|SHIFT", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
