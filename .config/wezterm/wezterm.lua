@@ -8,6 +8,19 @@ config.use_ime = true
 config.default_cursor_style = "BlinkingBar"
 config.window_background_opacity = 0.7
 
+-- 1. フォントの設定
+config.font = wezterm.font('PlemolJP Console NF')
+-- 2. 文字幅（Ambiguous Width）の設定
+config.unicode_version = 14
+config.char_select_font_size = 10
+-- 3. 東アジアの曖昧な文字幅を全角として扱う設定
+config.font_rules = {
+  {
+    intensity = 'Normal',
+    italic = false,
+    font = wezterm.font('PlemolJP Console NF'),
+  },
+}
 
 ----------------------------------------------------
 -- Tab
