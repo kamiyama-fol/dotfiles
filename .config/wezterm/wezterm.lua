@@ -1,10 +1,11 @@
 local wezterm = require("wezterm")
+local background = require 'background'
 local config = wezterm.config_builder()
 
 config.automatically_reload_config = true
 config.font_size = 12.0
 config.use_ime = true
--- config.macos_window_background_blur = 20
+config.background = background
 config.default_cursor_style = "BlinkingBar"
 config.window_background_opacity = 0.7
 
@@ -25,8 +26,8 @@ config.font_rules = {
 ----------------------------------------------------
 -- Tab
 ----------------------------------------------------
--- タイトルバーを非表示
-config.window_decorations = "RESIZE"
+-- -- タイトルバーを非表示
+-- config.window_decorations = "RESIZE"
 -- タブバーの表示
 config.show_tabs_in_tab_bar = true
 -- タブが一つの時は非表示
@@ -59,12 +60,12 @@ config.colors = {
   },
 }
 
--- 最初からフルスクリーンで起動
-local mux = wezterm.mux
-wezterm.on("gui-startup", function(cmd)
-    local tab, pane, window = mux.spawn_window(cmd or {})
-    window:gui_window():toggle_fullscreen()
-end)
+-- -- 最初からフルスクリーンで起動
+-- local mux = wezterm.mux
+-- wezterm.on("gui-startup", function(cmd)
+--     local tab, pane, window = mux.spawn_window(cmd or {})
+--     window:gui_window():toggle_fullscreen()
+-- end)
 
 -- ショートカットキー設定
 local act = wezterm.action
