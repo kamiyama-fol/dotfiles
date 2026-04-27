@@ -92,8 +92,6 @@ then
   export ANT_OPTS="-Dfile.encoding=UTF-8 -Xmx512m -Xss256k"
 fi
 
-
-
 ### Subversion ###
 if [ -d "/opt/subversion" ]
 then
