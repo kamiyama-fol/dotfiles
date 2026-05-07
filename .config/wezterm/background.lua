@@ -1,5 +1,5 @@
 local wezterm = require 'wezterm'
-local background_image = wezterm.home_dir .. "/.config/wezterm/falcon.png"
+local background_image = wezterm.home_dir .. "/.config/wezterm/whitebare.png"
 
 return {
   {
