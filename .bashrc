@@ -34,6 +34,9 @@ else
     PS1='\[\033[36m\]\u@\h\[\033[00m\]:\[\033[01m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\\$ '
 fi
 
+### vim ###
+alias vim="nvim"
+
 ### translate ###
 alias japanese="trans -b en:ja"
 . "$HOME/.cargo/env"
