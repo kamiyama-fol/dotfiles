@@ -115,6 +115,6 @@ config.keys = require("keybinds").keys
 config.key_tables = require("keybinds").key_tables
 config.leader = { key = "q", mods = "CTRL", timeout_milliseconds = 2000 }
 
-os.execute("afplay " .. wezterm.home_dir .. "/dotfiles/beep.mp3" .. "&")
+-- os.execute("afplay " .. wezterm.home_dir .. "/dotfiles/beep.mp3" .. "&")
 
 return config
