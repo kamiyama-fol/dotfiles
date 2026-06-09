@@ -14,3 +14,5 @@
 
 # Credentials
 .config/gh/hosts.yml
+
+.config/google-tasks-mcp/tokens.json
