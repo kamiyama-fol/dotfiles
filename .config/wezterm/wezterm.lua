@@ -67,17 +67,6 @@ wezterm.on("gui-startup", function(cmd)
     window:gui_window():toggle_fullscreen()
 end)
 
--- ショートカットキー設定
-local act = wezterm.action
-config.keys = {
-  -- Alt(Opt)+Shift+Fでフルスクリーン切り替え
-  {
-    key = 'f',
-    mods = 'SHIFT|META',
-    action = wezterm.action.ToggleFullScreen,
-  },
-}
-
 -- タブの形をカスタマイズ
 -- タブの左側の装飾
 local SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_lower_right_triangle
