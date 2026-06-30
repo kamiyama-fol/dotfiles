@@ -109,8 +109,16 @@ local key_tables = {
 
     -- === 単語移動 (w, e, b) ===
     { key = "w", mods = "NONE", action = act.CopyMode("MoveForwardWord") },
-    { key = "e", mods = "NONE", action = act.CopyMode("MoveForwardWord") },
+    { key = "e", mods = "NONE", action = act.CopyMode("MoveForwardWordEnd") },
     { key = "b", mods = "NONE", action = act.CopyMode("MoveBackwardWord") },
+
+    -- === 文字ジャンプ (f/F/t/T/;/,) ===
+    { key = "f", mods = "NONE", action = act.CopyMode({ JumpForward  = { prev_char = false } }) },
+    { key = "F", mods = "NONE", action = act.CopyMode({ JumpBackward = { prev_char = false } }) },
+    { key = "t", mods = "NONE", action = act.CopyMode({ JumpForward  = { prev_char = true  } }) },
+    { key = "T", mods = "NONE", action = act.CopyMode({ JumpBackward = { prev_char = true  } }) },
+    { key = ";", mods = "NONE", action = act.CopyMode("JumpAgain") },
+    { key = ",", mods = "NONE", action = act.CopyMode("JumpReverse") },
 
     -- === スクロールバック先頭/末尾 (g=top, G=bottom) ===
     { key = "g", mods = "NONE", action = act.CopyMode("MoveToScrollbackTop") },
