@@ -1,5 +1,5 @@
 DOTFILES_DIR := $(shell pwd)
-ITEMS := .config .bash_profile .bashrc
+ITEMS := .config .bash_profile .bashrc .hammerspoon
 
 help:
 	@echo "helpです"
