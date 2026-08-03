@@ -1,5 +1,9 @@
 .DS_Store
 
+# Nix
+result
+result-*
+
 # System & Binary directories
 .config/herd-lite/
 
