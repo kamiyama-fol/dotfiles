@@ -63,8 +63,10 @@ gh auth status
 | エディタ・ターミナル | nvim, wezterm, karabiner 設定 | `.config/` symlink |
 | ウィンドウ管理 | Hammerspoon ホットキー | `.hammerspoon/` |
 | Git / プロンプト | user.name/email, starship | `nix/home/programs.nix` |
+| Claude Code | 権限・sandbox 設定 | `.claude/settings.json` symlink |
+| Git グローバル除外 | Claude 生成物等 | `.config/git/ignore` |
 
-**手動移行が必要:** SSH 鍵、GitHub トークン、Cursor、Docker Desktop、会社 VPN/EDR 等 → [nix/MIGRATION.md](nix/MIGRATION.md)
+**手動移行が必要:** SSH 鍵、GitHub トークン、`claude login`、Cursor、Docker Desktop、会社 VPN/EDR 等 → [nix/MIGRATION.md](nix/MIGRATION.md)
 
 ## 日常運用
 

@@ -10,5 +10,6 @@ in
     ".bash_profile".source = symlink "${dotfiles}/.bash_profile";
     ".bashrc".source = symlink "${dotfiles}/.bashrc";
     ".config".source = symlink "${dotfiles}/.config";
+    ".claude/settings.json".source = symlink "${dotfiles}/.claude/settings.json";
   };
 }
