@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(security find-certificate *)",
+      "Bash(./gradlew tasks *)",
+      "Bash(security dump-trust-settings *)"
+    ]
+  },
+  "sandbox": {
+    "enableWeakerNetworkIsolation": true,
+    "network": {
+      "allowedDomains": [
+        "github.com",
+        "api.github.com",
+        "*.githubusercontent.com",
+        "*.npmjs.org",
+        "registry.yarnpkg.com",
+        "pypi.org",
+        "scrapbox.io"
+      ]
+    }
+  }
+}

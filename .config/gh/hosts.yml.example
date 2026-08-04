@@ -1,0 +1,10 @@
+# GitHub CLI 認証情報のテンプレート
+# 端末交換時: 旧 Mac の ~/.config/gh/hosts.yml をコピーするか、
+# `gh auth login` で再認証してください。
+#
+# cp hosts.yml.example hosts.yml  # 値を埋めてから
+
+github.com:
+  user: kamiyama-fol
+  oauth_token: YOUR_GITHUB_TOKEN_HERE
+  git_protocol: https

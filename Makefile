@@ -1,11 +1,23 @@
 DOTFILES_DIR := $(shell pwd)
 ITEMS := .config .bash_profile .bashrc .hammerspoon
+NIX_FLAKE := $(DOTFILES_DIR)#macos
 
 help:
 	@echo "helpです"
 	@echo "使用可能なコマンド:"
-	@echo "  make install  - シンボリックリンクを張り、環境を構築します"
-	@echo "  make unlink   - 作成したシンボリックリンクを削除します"
+	@echo "  make install      - シンボリックリンクを張り、環境を構築します（旧方式）"
+	@echo "  make nix-switch   - nix-darwin + home-manager で環境を反映します（推奨）"
+	@echo "  make nix-check    - flake の構文チェック"
+	@echo "  make unlink       - 作成したシンボリックリンクを削除します"
+
+nix-switch:
+	darwin-rebuild switch --flake $(NIX_FLAKE)
+
+nix-bootstrap:
+	nix run nix-darwin -- switch --flake $(NIX_FLAKE)
+
+nix-check:
+	nix flake check $(DOTFILES_DIR)
 
 install:
 	# install dotfiles items
