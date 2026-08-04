@@ -15,9 +15,8 @@
     let
       username = "k.ueyama";
       system = "aarch64-darwin";
-      overlays = [ (import ./nix/overlays/hammerspoon.nix) ];
       pkgs = import nixpkgs {
-        inherit system overlays;
+        inherit system;
         config.allowUnfree = true;
       };
     in {
@@ -28,7 +27,6 @@
           ./nix/darwin/default.nix
           home-manager.darwinModules.home-manager
           {
-            nixpkgs.overlays = overlays;
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "hm-bak";

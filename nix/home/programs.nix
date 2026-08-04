@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 {
   programs.starship = {
@@ -9,13 +9,13 @@
 
   programs.git = {
     enable = true;
-    userName = "kamiyama-fol";
-    userEmail = "kueyama@netprotections.co.jp";
-    extraConfig = {
+    settings = {
+      user.name = "kamiyama-fol";
+      user.email = "kueyama@netprotections.co.jp";
       commit.template = "${config.home.homeDirectory}/dotfiles/gitmessage.txt";
       init.defaultBranch = "main";
       core.excludesfile = "${config.home.homeDirectory}/.config/git/ignore";
-      "url.https://github.com/.insteadof" = "git@github.com:";
+      url."https://github.com/".insteadOf = "git@github.com:";
     };
   };
 }

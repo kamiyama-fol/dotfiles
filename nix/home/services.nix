@@ -1,12 +1,12 @@
 { config, ... }:
 
-let
-  dotfiles = "${config.home.homeDirectory}/dotfiles";
-in
 {
-  # Hammerspoon をログイン時に起動（ウィンドウ管理ホットキー）
-  services.hammerspoon = {
+  launchd.agents.hammerspoon = {
     enable = true;
-    configPath = "${dotfiles}/.hammerspoon";
+    config = {
+      ProgramArguments = [ "/Applications/Hammerspoon.app/Contents/MacOS/Hammerspoon" ];
+      RunAtLoad = true;
+      KeepAlive = true;
+    };
   };
 }

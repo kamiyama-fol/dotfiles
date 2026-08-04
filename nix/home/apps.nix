@@ -1,17 +1,19 @@
 { pkgs, ... }:
 
 {
-  # GUI アプリを /Applications にリンク
-  targets.darwin.linkApps = "link";
+  # GUI アプリを ~/Applications に配置（WezTerm 等の既存パスと合わせる）
+  targets.darwin.linkApps = {
+    enable = true;
+    directory = "Applications";
+  };
 
   home.packages = with pkgs; [
     # ターミナル・自動化
     wezterm
-    hammerspoon
 
     # ブラウザ・生産性
+    # obsidian — nixpkgs ビルドが不安定なため手動インストール（MIGRATION.md 参照）
     google-chrome
-    obsidian
     slack
     postman
   ];

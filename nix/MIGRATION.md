@@ -43,7 +43,8 @@ claude login
 | Docker Desktop | 公式サイト（`docker` CLI は別途 nix 化可） |
 | Clipy | App Store / GitHub Releases |
 | Alfred | 公式サイト |
-| Postico / Postico 2 | App Store |
+| Hammerspoon | 公式サイト（/Applications にインストール） |
+| Obsidian | App Store / 公式サイト（nixpkgs ビルド不安定のため手動） |
 | Claude Desktop | 公式サイト |
 
 ## 移行後の確認
