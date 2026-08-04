@@ -1,6 +1,6 @@
 # dotfiles
 
-Kamiyama の macOS 開発環境。**nix-darwin + home-manager** でパッケージと dotfiles を宣言的に管理します。
+Kamiyama の macOS 開発環境。**nix-darwin + home-manager** でパッケージ・macOS 設定・dotfiles を宣言的に管理します。
 
 ## 新しい Mac（会社端末交換）でのセットアップ
 
@@ -35,13 +35,36 @@ nix run nix-darwin -- switch --flake ~/dotfiles#macos
 darwin-rebuild switch --flake ~/dotfiles#macos
 ```
 
-### 4. 動作確認
+### 4. 秘密情報・手動移行
+
+[nix/MIGRATION.md](nix/MIGRATION.md) のチェックリストに従い、SSH 鍵・`gh auth` 等を移行してください。
+
+### 5. 動作確認
 
 ```bash
-which gh nvim go node python3 psql
-gh --version
-nvim --version
+which wezterm gh nvim go node python3 psql
+open -a WezTerm
+open -a "Karabiner-Elements"
+open -a Hammerspoon
+gh auth status
 ```
+
+## 引き継がれる設定の一覧
+
+| カテゴリ | 内容 | 管理場所 |
+|----------|------|----------|
+| macOS 設定 | ダークモード、キーリピート、Dock、Finder、トラックパッド | `nix/darwin/defaults.nix` |
+| フォント | PlemolJP / PlemolJP NF | `nix/darwin/default.nix` |
+| セキュリティ | Touch ID sudo | `nix/darwin/default.nix` |
+| シェル | bash（デフォルトシェル）、`.bashrc` / `.bash_profile` | nix-darwin + dotfiles |
+| CLI ツール | gh, nvim, go, node, python, postgresql 等 | `nix/home/packages.nix` |
+| GUI アプリ | WezTerm, Chrome, Obsidian, Slack, Postman, Hammerspoon | `nix/home/apps.nix` |
+| 自動起動 | Karabiner-Elements, Hammerspoon | `nix/darwin/services.nix`, `nix/home/services.nix` |
+| エディタ・ターミナル | nvim, wezterm, karabiner 設定 | `.config/` symlink |
+| ウィンドウ管理 | Hammerspoon ホットキー | `.hammerspoon/` |
+| Git / プロンプト | user.name/email, starship | `nix/home/programs.nix` |
+
+**手動移行が必要:** SSH 鍵、GitHub トークン、Cursor、Docker Desktop、会社 VPN/EDR 等 → [nix/MIGRATION.md](nix/MIGRATION.md)
 
 ## 日常運用
 
@@ -51,58 +74,38 @@ nvim --version
 | 変更内容の dry-run | `darwin-rebuild switch --flake ~/dotfiles#macos --dry-run` |
 | 1 世代前に戻す | `darwin-rebuild --rollback` |
 | flake 入力を更新 | `nix flake update` |
-| home-manager のみ試す | `home-manager switch --flake ~/dotfiles#k.ueyama` |
+| flake 構文チェック | `make nix-check` |
 
 ## ディレクトリ構成
 
 ```
 dotfiles/
-├── flake.nix              # flake エントリポイント
+├── flake.nix
 ├── nix/
-│   ├── darwin/default.nix # macOS システム（フォント、nix 設定、Touch ID sudo 等）
-│   └── home/home.nix      # ユーザーパッケージ + dotfiles symlink
-├── .config/               # wezterm, nvim, karabiner 等（従来どおり git 管理）
+│   ├── darwin/
+│   │   ├── default.nix    # エントリポイント
+│   │   ├── defaults.nix   # macOS System Settings
+│   │   └── services.nix   # Karabiner-Elements
+│   ├── home/
+│   │   ├── home.nix       # エントリポイント
+│   │   ├── packages.nix   # CLI
+│   │   ├── apps.nix       # GUI アプリ
+│   │   ├── dotfiles.nix   # symlink 定義
+│   │   ├── programs.nix   # git, starship
+│   │   └── services.nix   # Hammerspoon
+│   ├── overlays/          # nixpkgs に無い Hammerspoon 等
+│   └── MIGRATION.md       # 手動移行チェックリスト
+├── .config/
 ├── .bash_profile
-└── Makefile               # 旧 install（移行期間中のみ）
+└── Makefile
 ```
-
-## Homebrew から Nix への移行
-
-現在の brew パッケージは `nix/home/home.nix` に移植済みです。
-
-| 旧 | 新 |
-|----|-----|
-| `~/.homebrew` formula | `home.packages` |
-| pyenv / nvm / rbenv / volta | nixpkgs の python314 / nodejs / ruby |
-| `~/.cargo` の starship | nixpkgs の starship |
-| `~/.nvim` 手動インストール | nixpkgs の neovim |
-| Makefile の go 手動インストール | nixpkgs の go |
-| cask font-plemol-jp* | `fonts.packages` (plemoljp / plemoljp-nf) |
-
-`.bash_profile` は **nix 移行前後で共存** できるよう分岐しています。`hm-session-vars.sh` がある場合は nix 管理の PATH のみ使い、なければ従来の Homebrew / pyenv 等にフォールバックします。
-
-移行が完了したら以下を削除できます:
-
-```bash
-# 任意: 旧パッケージマネージャの残骸
-rm -rf ~/.homebrew ~/.pyenv ~/.nvm ~/.rbenv ~/.volta ~/.nvim ~/.go
-brew uninstall --cask ...  # 残っていれば
-```
-
-## nixpkgs に無い GUI アプリ
-
-以下は nix では管理していません。必要なら手動インストールしてください。
-
-| アプリ | 備考 |
-|--------|------|
-| Gemini（Google AI） | App Store / 公式サイト |
-| Motrix | `nix/home/home.nix` のコメントを外すと nixpkgs 版を試せます |
 
 ## カスタマイズ
 
-- **パッケージ追加**: `nix/home/home.nix` の `home.packages`
-- **フォント / システム設定**: `nix/darwin/default.nix`
-- **ユーザー名変更**: `flake.nix` の `username` と `nix/home/home.nix` を合わせて変更
+- **CLI 追加**: `nix/home/packages.nix`
+- **GUI アプリ追加**: `nix/home/apps.nix`（`allowUnfree` 対象あり）
+- **macOS 設定変更**: `nix/darwin/defaults.nix`
+- **ユーザー名変更**: `flake.nix` の `username`
 
 ## 旧 Makefile ベースの install
 

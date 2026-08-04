@@ -15,14 +15,20 @@
     let
       username = "k.ueyama";
       system = "aarch64-darwin";
+      overlays = [ (import ./nix/overlays/hammerspoon.nix) ];
+      pkgs = import nixpkgs {
+        inherit system overlays;
+        config.allowUnfree = true;
+      };
     in {
       darwinConfigurations.macos = nix-darwin.lib.darwinSystem {
-        inherit system;
+        inherit system pkgs;
         specialArgs = { inherit inputs username; };
         modules = [
           ./nix/darwin/default.nix
           home-manager.darwinModules.home-manager
           {
+            nixpkgs.overlays = overlays;
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "hm-bak";
@@ -32,10 +38,8 @@
         ];
       };
 
-      # darwin-rebuild なしで home-manager だけ試す場合:
-      # home-manager switch --flake .#k.ueyama
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${system};
+        inherit pkgs;
         extraSpecialArgs = { inherit inputs username; };
         modules = [ ./nix/home/home.nix ];
       };
