@@ -1,8 +1,6 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 export LANG=ja_JP.UTF-8
 
-eval "$(starship init bash)"
-
 ##################
 ### My Aliases ###
 ##################
@@ -26,13 +24,6 @@ alias gca='git commit -am'
 alias thm='sudo openvpn $HOME/tryhackme/setting.ovpn'
 
 export PATH=$HOME/.progate/bin:$PATH
-
-source ~/.git-prompt.sh
-if [ $UID -eq 0 ]; then
-    PS1='\[\033[31m\]\u@\h\[\033[00m\]:\[\033[01m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\\$ '
-else
-    PS1='\[\033[36m\]\u@\h\[\033[00m\]:\[\033[01m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\\$ '
-fi
 
 ### vim ###
 alias vim="nvim"

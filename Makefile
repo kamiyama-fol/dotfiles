@@ -22,7 +22,13 @@ install:
 	@[ -d ~/.nvm ]   || git clone https://github.com/nvm-sh/nvm.git ~/.nvm
 	@[ -d ~/.cargo ] || curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 	@[ -d ~/.homebrew ] || [ -d /opt/homebrew ] || [ -d /usr/local/homebrew ] || (mkdir -p ~/.homebrew && curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C ~/.homebrew)
-	
+
+	# install starship
+	@command -v starship &> /dev/null || brew install starship
+
+	# install PlemolJP Nerd Font (wezterm用フォント)
+	@brew list --cask font-plemol-jp-nf &> /dev/null || brew install --cask font-plemol-jp-nf
+
 	# install neovim
 	@if [ ! -d ~/.nvim ]; then \
 		ARCH=$$(arch); \

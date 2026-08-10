@@ -72,13 +72,6 @@ then
   export CARGO_HOME=$HOME/.cargo/
 fi
 
-### starship ###
-if [ -f "$HOME/.cargo/bin/starship" ]; 
-then
-  export PATH="$HOME/.cargo/bin:$PATH"
-  eval "$(starship init bash)"
-fi
-
 ### PHP ###
 export PATH="/Users/kohki/.config/herd-lite/bin:$PATH"
 export PHP_INI_SCAN_DIR="/Users/kohki/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
@@ -110,6 +103,11 @@ elif [ -f "/opt/homebrew/bin/brew" ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 elif [ -f "/usr/local/bin/brew" ]; then
     eval "$(/usr/local/bin/brew shellenv)"
+fi
+
+### starship ###
+if command -v starship 1>/dev/null 2>&1; then
+    eval "$(starship init bash)"
 fi
 
 ### laravel ###
