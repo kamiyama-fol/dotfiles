@@ -26,6 +26,9 @@ install:
 	# install starship
 	@command -v starship &> /dev/null || brew install starship
 
+	# install GitHub CLI
+	@command -v gh &> /dev/null || brew install gh
+
 	# install PlemolJP Nerd Font (wezterm用フォント)
 	@brew list --cask font-plemol-jp-nf &> /dev/null || brew install --cask font-plemol-jp-nf
 

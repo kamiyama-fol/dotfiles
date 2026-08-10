@@ -14,9 +14,6 @@ export PATH=$PATH:$HOME/.aws-cli/
 ### my command ###
 export PATH="$HOME/.bin:$PATH"
 
-### GitHub CLI ###
-export PATH=$PATH:$HOME/.gh/bin
-
 ### Python ###
 if [ -d "$HOME/.pyenv" ]
 then
