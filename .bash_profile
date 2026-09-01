@@ -123,3 +123,6 @@ export PATH="$HOME/.nvim/bin:$PATH"
 
 # postgres
 export PATH="$HOME/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
+
+### Claude Code MCP env (workspace-mcp 等が ${VAR} 展開するため claude 起動前に必要) ###
+[ -f "$HOME/.claude/mcp.env" ] && source "$HOME/.claude/mcp.env"
