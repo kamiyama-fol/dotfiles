@@ -7,7 +7,7 @@ export LANG=ja_JP.UTF-8
 
 ### bash_commands ###
 alias mduch='sh $HOME/dotfiles/lib/touch_mkdir.sh'
-alias ls='ls -AG'
+alias ls='ls -laG'
 alias ll='ls -laG'
 alias la='ls -a'
 
