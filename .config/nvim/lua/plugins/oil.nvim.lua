@@ -5,8 +5,11 @@ return {
   opts = {
     view_options = {
       show_hidden = true,
+      watch_for_changes = true,
     },
     keymaps = {
+      
+      -- Ollを残してファイルを開く処理
       -- ["<CR>"] = function()
       --   local oil = require("oil")
       --   local entry = oil.get_cursor_entry()
