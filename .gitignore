@@ -19,5 +19,7 @@
 .config/google-tasks-mcp/oauth-credentials.json
 .config/github-copilot/*
 .config/gcloud/
+.config/gws/
+.config/cagent/user-uuid
 .config/life/google-service-account.json
 .config/workspace-mcp/oauth-client-web.json
