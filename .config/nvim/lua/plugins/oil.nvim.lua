@@ -31,4 +31,8 @@ return {
   },
   dependencies = { { "echasnovski/mini.icons", opts = {} } },
   lazy = false,
+  keys = {
+    { "-", "<CMD>Oil<CR>", desc = "Oil: 親ディレクトリを開く" },
+    { "<Leader>e", "<CMD>Oil<CR>", desc = "Oil: ファイラを開く" },
+  },
 }
